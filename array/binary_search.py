@@ -13,3 +13,14 @@ def binary_search(v, x):
     print(-1)
 
 binary_search([2,3,4,10,40], 10)
+
+def peak_elem(arr) -> int:
+    i, j = 0, len(arr) - 1
+    while i < j:
+        # print(arr[i:j])
+        m = (i + j) // 2
+        if arr[m] > arr[m+1]:
+            j = m
+        else:
+            i = m+1
+    return i

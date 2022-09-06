@@ -5,7 +5,7 @@ a = a^b
 
 # check the value of the ith bit
 def getBit(num, i):
-    return ((num & (1 << i)) != 0);
+    return (num & (1 << i)) != 0 # == (1 << i)
 
 # set value of the ith bit
 def set_bit_to_one(num, i): return num | (1 << i)

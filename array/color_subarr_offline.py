@@ -11,7 +11,7 @@ def paint_subarr(queries, n):
 
     for query in queries[::-1]:
         x, y, c = query
-        while x <= y and x<n:
+        while x < y and x<n:
             x = get_root(x)
             colors[x] = c
             a[x] = x + 1

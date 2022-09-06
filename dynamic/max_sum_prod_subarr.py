@@ -15,15 +15,31 @@ def max_subarr(v):
             stop = i
     print(maxs, v[start:stop+1])
 
-def max_kadane(v):
+def kadane(v): # max subarr
     here = sofar = v[0]
     for x in v[1:]:
         here = max(x, here+x)
         sofar = max(sofar, here)
     print(sofar)
+    return sofar
 
-max_subarr([-2, -3, 4, -1, -2, 1, 5, -3])
-max_kadane([-2, -3, 4, -1, -2, 1, 5, -3])
+assert(max_subarr([-2, -3, 4, -1, -2, 1, 5, -3]) == kadane([-2, -3, 4, -1, -2, 1, 5, -3]))
+
+def max_circular_subarr(v):
+    all_negative = True
+    for x in v:
+        if x >= 0:
+            all_negative = False
+        break
+    if all_negative:
+        return max(v)
+    # do for not circular
+    x = kadane(v)
+    # for circular:
+    # remove the most negative subarr from the whole
+    y = sum(v) - kadane([-x for x in v])
+    return max(y, x)
+
 
 
 def max_subarr_prod(v):

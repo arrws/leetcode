@@ -5,7 +5,7 @@ import collections
 class LFUCache:
 
     def __init__(self, capacity):
-        # Store tuple, first element value, second element frequency
+        # freq to dict { key to (value, freq) }
         self.freq = defaultdict(collections.OrderedDict)
         self.d = dict() # key to Node
         self.capacity = capacity

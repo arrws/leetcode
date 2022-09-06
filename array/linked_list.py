@@ -82,7 +82,7 @@ def removeNthFromEnd(head, n):
 
 
 def nextLargerNodes(head):
-    # return array with the next larger element
+# return array with the next larger element
     # ex: input [1,7,5,1,9,2,5,1], output: [7,9,9,9,0,5,0,0]
     a = []
     s = []
