@@ -53,7 +53,24 @@ class Skiplist:
             self.root = new_root
             y = self._insert(self.root, num)
             y.down = prev_y
-
+            
+    def _push(self, x: Node, num: int) -> Node:
+        while x.next and x.next.val < num:
+            x = x.next
+        if x.down:
+            prev_node = self.push(x.down, num)
+            if prev_node and self._coinflip():
+                y = self._insert(x, num)
+                y.down = prev_node
+                return y
+            else:
+                # stop adding the node to upper levels
+                return None
+        else:
+            # insert the new node
+            y = self._insert(x, num)
+            return y
+        
     def _get_level_rightmost(self, x: Node, num: int):
         levels = []
         while x:
