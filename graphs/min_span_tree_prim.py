@@ -4,7 +4,7 @@ INF  = 999
 
 def prim_min_span_tree(g):
     V = len(g)
-    u = [0 for _ in range(V)]
+    used = set()
     parent = [-1 for _ in range(V)]
     parent[0] = 0
     d = [INF for _ in range(V)]
@@ -14,15 +14,17 @@ def prim_min_span_tree(g):
         # x = get min dist vertex
         dist = INF
         for v in range(V):
-            if u[v] == 0 and d[v] < dist:
+            if v not in used and d[v] < dist:
                 dist = d[v]
                 x = v
 
-        u[x] = 1
-        for f in range(len(g[x])):
-            if u[y] == 0 and d[f] > g[x][f] and g[x][f]>0:
-                d[f] = g[x][f]
-                parent[f] = x
+        used.add(x)
+        for y in range(len(g[x])):
+            if g[x][y]>0: # if x y connected
+                if y not in used and d[y] > g[x][y]:
+                    # if can improve distance
+                    d[y] = g[x][y]
+                    parent[y] = x
 
     for i, x in enumerate(parent):
         print([i,x], d[i])

@@ -1,3 +1,5 @@
+# how many substrings of a string are palindrome
+
 def count_pal(s):
     # dynamic prog: count the number of palindromes in a string
     s = "." + s

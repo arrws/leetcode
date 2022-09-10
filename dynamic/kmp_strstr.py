@@ -21,9 +21,8 @@ strstr("xabcabcbxbasabc", "abc")
 
 
 def kmp_search(s, x):
-    u = [0]*len(x)
-    preprocess(u, s, x)
-
+    # preprocess target string
+    u = preprocess(x)
     k = 0
     i = 0
     while i<len(s):
@@ -39,7 +38,8 @@ def kmp_search(s, x):
             else:
                 i += 1
 
-def preprocess(u, s, x):
+def preprocess(x):
+    u = [0]*len(x)
     k = 0
     i = 1
     while i<len(x):
@@ -54,17 +54,19 @@ def preprocess(u, s, x):
                 u[k] = 0
                 i += 1
     # print(u)
+    return u
 
 kmp_search("ABABDABACDABABCABAB", "ABAB")
 
 
 # Version II
 
-def kmp_search(s, x):
+def kmp_search_2(s, x):
     s = "_"+s
     x = "_"+x
-    u = [0]*len(x)
-    preprocess(u, s, x)
+
+    # preprocess target string
+    u = preprocess_2(x)
 
     k = 0
     for i in range(1,len(s)):
@@ -76,7 +78,8 @@ def kmp_search(s, x):
             print(i-k)
             k = u[k]
 
-def preprocess(u, s, x):
+def preprocess_2(x):
+    u = [0]*len(x)
     k = 0
     for i in range(2,len(x)):
         while k > 0 and x[i] != x[k+1]:
@@ -85,5 +88,6 @@ def preprocess(u, s, x):
             k += 1
         u[i] = k
     # print(u)
+    return u
 
-kmp_search("ABABDABACDABABCABAB", "ABAB")
+kmp_search_2("ABABDABACDABABCABAB", "ABAB")

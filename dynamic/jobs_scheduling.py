@@ -14,13 +14,14 @@ def jobs_scheduling(jobs):
     a[0] = jobs[0][2]
 
     for i in range(1,len(jobs)):
-        p = jobs[i][2] # current profit
+        p = jobs[i][2] # current job profit
 
-        j = last_nonconflict(jobs, i) # before job i
+        j = last_nonconflict(jobs, i) # last job before job i
         if j != -1:
-            p += a[j]
+            p += a[j] # add the max profit of last job
 
-        a[i] = max(p, a[i-1]) # maximum of including and excluding
+        # maximum of including or excluding current job
+        a[i] = max(p, a[i-1])
 
     return a[len(jobs)-1]
 

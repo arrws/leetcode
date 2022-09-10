@@ -1,6 +1,5 @@
 def interleave_str(s1, s2, s3):
     # can s3 be formed by interleaving s1 and s2 ?
-
     n, m = len(s1), len(s2)
     if len(s3) != n + m:
         return False

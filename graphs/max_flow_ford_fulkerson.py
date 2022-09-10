@@ -3,19 +3,16 @@
 INF = 999
 
 def bfs(G, source, sink, p):
-    u = [0 for _ in range(len(G))]
+    used = set([source])
     q = [source]
-    u[source] = 1
     while len(q) > 0:
         x = q.pop(0)
-        for v, k in enumerate(G[x]):
-            if u[v] == 0 and k > 0:
-                q.append(v)
-                u[v] = 1
-                p[v] = x
-    if u[sink] == 1:
-        return True
-    return False
+        for y, capacity in enumerate(G[x]):
+            if y not in used and capacity > 0:
+                q.append(y)
+                used.add(y)
+                p[y] = x
+    return sink in used
 
 def max_flow(G):
     # Edmonds Karp == Ford Fulkerson
@@ -25,7 +22,8 @@ def max_flow(G):
     max_flow = 0
     while bfs(G, source, sink, p):
         # find min residual edge filled by bfs
-        f = INF
+        # retrace the augmented path to find min improvement
+        f = INF # augmented flow
         x = sink
         while(x != source):
             f = min(f, G[p[x]][x])
@@ -33,6 +31,8 @@ def max_flow(G):
         # update
         max_flow += f
         x = sink
+        # go up on the augmented path
+        # and reverse the augmented flow
         while(x != source):
             G[p[x]][x] -= f
             G[x][p[x]] += f # residual graph for undos

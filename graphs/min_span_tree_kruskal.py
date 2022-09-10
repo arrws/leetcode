@@ -22,6 +22,7 @@ def kruskal_min_span_tree(g):
 
     for i in tree:
         print(i)
+    return tree
 
 # [vertex, vertex, dist]
 g = [

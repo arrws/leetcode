@@ -15,6 +15,5 @@ def longest_consec_seq_set(nums):
     return max_len
 
 # not taken in order
-print(longest_consec_seq([1,4,16,6,10,8,2,10,4,20,1,3,2]))
 print(longest_consec_seq_set([1,4,16,6,10,8,2,10,4,20,1,3,2]))
 

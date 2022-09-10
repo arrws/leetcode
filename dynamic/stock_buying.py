@@ -1,4 +1,4 @@
-def max_profit(k: int, prices: [int]):
+def max_profit(k: int, prices: list[int]):
     # Say you have an array for which the ith element is the price of a given stock on day i.
     # Design an algorithm to find the maximum profit.
     # You may complete at most k transactions.
@@ -19,7 +19,7 @@ def max_profit(k: int, prices: [int]):
 
     # max profit until time i
     dp = [0 for _ in range(len(prices))]
-    for j in range(k):
+    for _ in range(k): # can do k transactions
         mn = prices[0]
         mx = 0
         # compute for each transaction
@@ -28,9 +28,7 @@ def max_profit(k: int, prices: [int]):
             mn = min(mn, prices[i] - dp[i])
             mx = max(mx, prices[i] - mn)
             dp[i] = mx
-
             # print(prices[i], mn, mx)
-
         # print(dp)
     return dp[-1]
 

@@ -1,3 +1,5 @@
+# maximum sum of subarr
+
 def max_subarr(v):
     maxs = max(v)
     start = stop = v.index(maxs)
@@ -41,11 +43,12 @@ def max_circular_subarr(v):
     return max(y, x)
 
 
+# maximum prod of subarr
 
 def max_subarr_prod(v):
     p = v[0]
-    mx = v[0]
-    mn = v[0]
+    mx = v[0] # max positive prod
+    mn = v[0] # max negative prod
     for x in v[1:]:
         a = [x, mx*x, mn*x]
         mx = max(a)

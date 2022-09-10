@@ -41,14 +41,14 @@ def topological_sort_kahn(G):
     top_order = [] # topological order
 
     while queue:
-        u = queue.pop(0)
+        x = queue.pop(0)
         top_order.append(u)
 
-        for i in G[u]:
-            in_degree[i] -= 1 # update in-degree
+        for y in G[x]:
+            in_degree[y] -= 1 # update in-degree
             # if in-degree becomes zero add it to queue
-            if in_degree[i] == 0:
-                queue.append(i)
+            if in_degree[y] == 0:
+                queue.append(y)
         k += 1
 
     if k != len(G): # check if there was a cycle

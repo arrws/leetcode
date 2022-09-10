@@ -4,7 +4,7 @@ INF = 999
 
 def dfs(G, x, p, u):
     for y in range(len(G[0])):
-        # if x math y and y avaible
+        # if x math y and y available
         if G[x][y] and u[y] == 0:
             u[y] = 1 # visited y
 

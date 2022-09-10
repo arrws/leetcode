@@ -1,17 +1,20 @@
-# weight and profit
+# given multiple objects of weight w and profit p
+# maximum profit by stealing objects weiting max_weight in total
 
-def knapsack(W, w, v): # W is max weight
-    a = [[ 0 for _ in range(W+1)] for _ in range(len(v)+1)]
+def knapsack(max_weight, w, p):
+    a = [[ 0 for _ in range(max_weight+1)] for _ in range(len(p)+1)]
 
-    for i in range(1, len(v)+1):
-        for j in range(1, W+1): # if you take 1, 2,  ... W load
+    # go throught all objects
+    for i in range(1, len(p)+1):
+        # if you take 1, 2,  ... max_weight load
+        for j in range(1, max_weight+1):
             a[i][j] = a[i-1][j]
             if w[i-1] <= j:
-                a[i][j] = max(a[i][j], v[i-1] + a[i-1][j-w[i-1]])
+                a[i][j] = max(a[i][j], p[i-1] + a[i-1][j-w[i-1]])
         # for x in a: print(x)
 
     s = []
-    i, j = len(v), W
+    i, j = len(p), max_weight
     while i > 0:
         if w[i-1] <= j and a[i-1][j] < a[i][j]:
             s.append(i)

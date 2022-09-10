@@ -17,7 +17,6 @@ u = [0 for _ in range(len(a))]
 dfs(4, 0, a, u, [])
 
 
-
 # undir graph
 # complexity V+E
 
@@ -28,8 +27,8 @@ def dfs(start, v, u, k):
             dfs(f, v, u, k)
 
 def connected_comp(v):
-    k = 0
-    u = [0 for _ in range(len(v))]
+    k = 0 # current level
+    u = [0 for _ in range(len(v))] # level
     for i in range(len(v)):
         if u[i] == 0:
             k += 1
@@ -40,12 +39,11 @@ def connected_comp(v):
 connected_comp([[1,3], [0,2], [1,3], [0,2], [5], [4]])
 
 
-
 # dir/undir graph
 # complexity V+E
 
 def bfs(start, v):
-    u = [0 for _ in range(len(v))]
+    u = [0 for _ in range(len(v))] # level
     u[start] = 1
     q = [start]
     while len(q) > 0:

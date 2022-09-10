@@ -11,8 +11,8 @@ def bfs(G, level, source, sink, p):
         new_q = []
         while len(q) > 0:
             x = q.pop(0)
-            for v, cap in enumerate(G[x]):
-                if level[v] == -1 and cap > 0:
+            for v, capacity in enumerate(G[x]):
+                if level[v] == -1 and capacity > 0:
                     new_q.append(v)
                     level[v] = k
                     p[v] = x
@@ -26,18 +26,19 @@ def bfs(G, level, source, sink, p):
 def dfs(G, level, x, sink, p):
     if x == sink:
         return INF
-    for v, cap in enumerate(G[x]):
+    for v, capacity in enumerate(G[x]):
         if level[v] == level[x] + 1:
             p[v] = x
             aug_flow = dfs(G, level, v, sink, p)
             if aug_flow > 0:
-                return min(cap, aug_flow)
+                return min(capacity, aug_flow)
     return 0
 
 
 def max_flow(G):
     source = 0
     sink = len(G) - 1
+    # parent for the augmented flow
     p = [-1 for _ in range(len(G))]
     level = [-1 for _ in range(len(G))]
     max_flow = 0
@@ -48,12 +49,14 @@ def max_flow(G):
         aug_flow = dfs(G, level, source, sink, p)
         print(aug_flow, max_flow)
 
-        # update
+        # while still finding an improvement
         while aug_flow > 0:
             max_flow += aug_flow
 
             # update residual graph
             x = sink
+            # go up on the augmented path
+            # and reverse the augmented flow
             while(x != source):
                 G[p[x]][x] -= aug_flow
                 G[x][p[x]] += aug_flow  # residual graph for undos

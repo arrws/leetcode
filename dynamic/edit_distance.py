@@ -14,7 +14,7 @@ def edit_distance(s1, s2):
 
     for i in range(1, m):
         for j in range(1, n):
-            # last characters the same do nothing
+            # do nothing if current characters match
             if s1[i - 1] == s2[j - 1]:
                 v[i][j] = v[i - 1][j - 1]
             else:
