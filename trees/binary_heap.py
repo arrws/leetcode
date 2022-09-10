@@ -1,62 +1,61 @@
 class MinHeap:
     def __init__(self):
-        self.h = [0]
+        self.arr = [0]
 
     def _swap(self, x, y):
-         u = self.h[x]
-         self.h[x] = self.h[y]
-         self.h[y] = u
+         u = self.arr[x]
+         self.arr[x] = self.arr[y]
+         self.arr[y] = u
 
 
     def _go_down(self, x):
         left = 2*x
         right = 2*x+1
 
-        if right < len(self.h):
-            if self.h[x] > self.h[left] and self.h[left] <= self.h[right]:
-                self._swap(x, left)
-                self._go_down(left)
-            if self.h[x] > self.h[right] and self.h[right] <= self.h[left]:
-                self._swap(x, right)
-                self._go_down(right)
+        if right < len(self.arr):
+            # change with the smaller one
+            i = left if self.arr[left] <= self.arr[right] else right
+            if self.arr[x] > self.arr[i]:
+                self._swap(x, i)
+                self._go_down(i)
 
         # no right element
-        if left < len(self.h) and self.h[x] > self.h[left]:
+        if left < len(self.arr) and self.arr[x] > self.arr[left]:
                 self._swap(x, left)
                 self._go_down(left)
 
 
     def _go_up(self, x):
         parent = int(x/2)
-        if x>1 and self.h[x] < self.h[parent]:
-            # print(self.h)
+        if x>1 and self.arr[x] < self.arr[parent]:
+            # print(self.arr)
             self._swap(x, parent)
             self._go_up(parent)
 
 
     def heapify(self, v):
-        self.h = [0]
+        self.arr = [0]
         for x in v:
             self.push(x)
 
     def push(self, x):
-        self.h.append(x)
-        self._go_up(len(self.h)-1)
+        self.arr.append(x)
+        self._go_up(len(self.arr)-1)
 
     def pop(self):
-        x = self.h[1]
-        self._swap(1, len(self.h)-1)
-        self.h.pop(-1)
+        x = self.arr[1]
+        self._swap(1, len(self.arr)-1)
+        self.arr.pop(-1)
         self._go_down(1)
         return x
 
     def print_tree(self):
         p = 1
         j = 0
-        while p < len(self.h):
+        while p < len(self.arr):
             for i in range(p, p*2):
-                if i < len(self.h):
-                    print(self.h[i], end=" ")
+                if i < len(self.arr):
+                    print(self.arr[i], end=" ")
                     # print(i, end=" ")
             j += 1
             p = int(pow(2,j))

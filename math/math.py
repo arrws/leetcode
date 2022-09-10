@@ -13,7 +13,6 @@ def pow_log_time(n, p):
     return s
 
 
-
 def erathostene_siege(n):
     u = [True for _ in range(n+1)]
     primes = [2]
@@ -56,7 +55,6 @@ def fast_fib(n):
 
 
 
-
 # 0| 0 1 2 3 4
 # ------------
 # 0| 0 1 2 3 4
@@ -67,12 +65,10 @@ def fast_fib(n):
 
 def rand7_from_rand5():
     def rand5(): pass
-
     x = 5*rand5() + rand5()
     while x > 20:
             x = 5*rand5() + rand5()
     return s%7;
-
 
 
 # pick random number weighted by value
