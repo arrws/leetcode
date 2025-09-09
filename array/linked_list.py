@@ -1,4 +1,4 @@
-class ListNode:
+class Node:
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -28,7 +28,7 @@ def hasCycle(head):
 
 
 def mergeTwoLists(l1, l2):
-    head = l = ListNode(0)
+    head = l = Node(0)
     while l1 and l2:
         if l1.val > l2.val:
             l.next = l2
@@ -68,7 +68,7 @@ def removeNth(head, n):
     return head
 
 def removeNthFromEnd(head, n):
-    l = ListNode(0)
+    l = Node(0)
     l.next = head
     p = l
     fast_p = l
@@ -84,9 +84,6 @@ def removeNthFromEnd(head, n):
 def nextLargerNodes(head):
 # return array with the next larger element
     # ex: input [1,7,5,1,9,2,5,1], output: [7,9,9,9,0,5,0,0]
-    a = []
-    s = []
-    k = 0
     while head:
         while s and s[-1][0] < head.val:
             _, i = s.pop(-1)
@@ -97,7 +94,7 @@ def nextLargerNodes(head):
         head = head.next
     return a
 
-def isPalindrome(self, head: ListNode) -> bool:
+def isPalindrome(self, head: Node) -> bool:
     # O(N) time O(1) space
     p = None
     x = head
