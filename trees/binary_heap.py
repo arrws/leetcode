@@ -3,9 +3,7 @@ class MinHeap:
         self.arr = [0]
 
     def _swap(self, x, y):
-         u = self.arr[x]
-         self.arr[x] = self.arr[y]
-         self.arr[y] = u
+         self.arr[x], self.arr[y] = self.arr[y], self.arr[x]
 
 
     def _go_down(self, x):
@@ -18,6 +16,7 @@ class MinHeap:
             if self.arr[x] > self.arr[i]:
                 self._swap(x, i)
                 self._go_down(i)
+            return
 
         # no right element
         if left < len(self.arr) and self.arr[x] > self.arr[left]:
